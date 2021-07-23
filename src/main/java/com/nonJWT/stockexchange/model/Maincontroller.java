@@ -1,6 +1,9 @@
 package com.nonJWT.stockexchange.model;
 
+import java.io.IOException;
 import java.net.URI;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -9,8 +12,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -125,6 +133,56 @@ public class Maincontroller {
 		return id;
 	}
 
+	@GetMapping("/company/{id}")
+	public ResponseEntity<Company> getCompanyById(@PathVariable("id") long id) {
+		Optional<Company> companyData = cmprep.findById(id);
+
+		if (companyData.isPresent()) {
+			return new ResponseEntity<>(companyData.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@PutMapping("/company/{id}")
+	public ResponseEntity<Company> updateTutorial(@PathVariable("id") long id, @RequestBody Company company) {
+		Optional<Company> companyData = cmprep.findById(id);
+
+		if (companyData.isPresent()) {
+			Company _company = companyData.get();
+			_company.setCompanyName(company.getCompanyName());
+			_company.setTurnover(company.getTurnover());
+			_company.setCeo(company.getCeo());
+			_company.setBoardOfDirectors(company.getBoardOfDirectors());
+			_company.setCompanyBrief(company.getCompanyBrief());
+			_company.setSectorName(company.getSectorName());
+			return new ResponseEntity<>(cmprep.save(_company), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@DeleteMapping("/company/{id}")
+	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
+		try {
+			cmprep.deleteById(id);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@RequestMapping(value = "/getupcomingipodetails", method = RequestMethod.GET)
+	public List<IPODetail> getUpcomingIpoDetails() throws ClassNotFoundException, IOException {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		Query query = em.createNamedQuery("IpoDetail.getDate");
+		query.setParameter("date", now);
+		List<IPODetail> upcomingipolist = (List<IPODetail>) query.getResultList();
+		// make sure your entity class properties of user are in lower case and match
+		// the json,to avoid errors
+		return upcomingipolist;
+	}
 	
 
 	

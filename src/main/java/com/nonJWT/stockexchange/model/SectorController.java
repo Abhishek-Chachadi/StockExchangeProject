@@ -43,6 +43,12 @@ public class SectorController {
 
 	}
 
+	@RequestMapping(value = "/getcompanysectors", method = RequestMethod.GET)
+	public List<Sector> getCompaniesusingsectors() {
+		List<Sector> lstOfCompanies = sectorrepo.findAll();
+		return lstOfCompanies;
+
+	}
 	/*
 	 * List<Company> getDataFromDB2(String sectorName, LocalDate localDate,
 	 * LocalDate localDate2) { Query query = em.createNamedQuery("Sector.getDate");

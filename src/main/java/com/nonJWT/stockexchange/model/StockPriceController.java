@@ -94,6 +94,47 @@ public class StockPriceController {
 		return map;
 	}
 
+	private List<StockPrice> getDataFromDB2(String code, String string, LocalDate parse, LocalDate parse2) {
+
+		Query query = em.createNamedQuery("StockPrice.getDate");
+		query.setParameter("startDate", parse);
+		query.setParameter("endDate", parse2);
+		List<StockPrice> stock = (List<StockPrice>) query.getResultList();
+		List<StockPrice> filteredStock = new ArrayList<>();
+		for (StockPrice s : stock) {
+			if (s.getCompanyCode().equals(code)) {
+				filteredStock.add(s);
+			}
+		}
+		return filteredStock;
+
+	}
+
+	@RequestMapping(value = "/getmultiplecompany", method = RequestMethod.POST)
+	public Map<String, List<StockPrice>> getSMultipleCompany(@RequestBody Map<String, String> text) {
+		// company name, stock exchange, from and to 1, from and to 2
+		Stockexchange e = stockRepo.findByName(text.get("name"));
+		Company c1 = cmprepo.findByCompanyName(text.get("companyname1"));
+		Company c2 = cmprepo.findByCompanyName(text.get("companyname2"));
+		Query query1 = em.createNamedQuery("Companystockexchange.findBycompanyCode");
+		query1.setParameter("stockexchange", e);
+		query1.setParameter("company", c1);
+		String cCode1 = (String) query1.getSingleResult();
+		Query query2 = em.createNamedQuery("Companystockexchange.findBycompanyCode");
+		query2.setParameter("stockexchange", e);
+		query2.setParameter("company", c2);
+		String cCode2 = (String) query2.getSingleResult();
+		List<StockPrice> period1 = getDataFromDB2(cCode1, text.get("companyname1"), LocalDate.parse(text.get("from1")),
+				LocalDate.parse(text.get("to1")));
+		List<StockPrice> period2 = getDataFromDB2(cCode2, text.get("companyname2"), LocalDate.parse(text.get("from1")),
+				LocalDate.parse(text.get("to1")));
+		Map<String, List<StockPrice>> map = new HashMap<>();
+		map.put("firstList", period1);
+		map.put("secondList", period2);
+		return map;
+	}
+
+
 
 }
 /*

@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @NamedQuery(name = "Company.findByName", query = "SELECT c FROM Company c WHERE c.companyName = :name")
 @NamedQuery(name = "Company.findBySectorName", query = "SELECT c FROM Company c WHERE c.sectorName = :sectorName")
@@ -54,6 +55,7 @@ public class Company {
 	private IPODetail ipo;
 
 	@OneToMany(targetEntity = Companystockexchangemap.class)
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private List<Companystockexchangemap> compstockmap;
 
 	@ManyToOne(fetch = FetchType.LAZY)
