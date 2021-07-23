@@ -9,11 +9,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import NavBar from './NavBar';
 import LandingPage from './LandingPage';
 import UserLandingPage from './UserLandingPage.js';
-
+import FusionChart from './FusionChart';
+import LoginPage from './LoginPage';
 ReactDOM.render(
   <React.StrictMode>
+    {/* <LoginPage/> */}
+
     <LandingPage/>
-    <UserLandingPage/>
+    {/* <UserLandingPage/> */}
+    {/* <FusionChart/> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

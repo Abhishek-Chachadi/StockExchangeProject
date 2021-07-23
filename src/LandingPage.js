@@ -10,6 +10,7 @@ import NavBar from './NavBar';
 import CompanyexchangeMap from './CompanyexchangeMap';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import CompanyUpdate from './CompanyUpdate';
+import ManageSector from './ManageSector';
 function LandingPage()
 {
     return(
@@ -23,7 +24,9 @@ function LandingPage()
         <Route path="/importexcel" component={App}/>
         <Route path="/ipodetails" component={IPODetails}/>
         <Route path="/addcompanyexchangemap" component={CompanyexchangeMap}/>
+        <Route path="/getsectors" component={ManageSector}/>
         <Route path="/company/:id" component={CompanyUpdate}/>
+        
         </Switch>
         </div>
         </Router>

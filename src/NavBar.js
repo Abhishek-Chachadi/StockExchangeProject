@@ -21,7 +21,7 @@ class NavBar extends Component {
           <Link to="importexcel"> <li>Import Excel</li></Link>
           <Link to="ipodetails"> <li>Update IPO Details </li></Link>
           <Link to="addcompanyexchangemap"> <li>Enter Company Exchange Name </li></Link>
-          
+          <Link to="getsectors"><li>Manage Sector</li></Link>
         </ul> 
         </nav>
     );

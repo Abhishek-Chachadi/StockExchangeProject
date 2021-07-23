@@ -16,6 +16,7 @@ export default class ManageCompany extends React.Component {
         this.onChangesectorName = this.onChangesectorName.bind(this);
         this.savecompany = this.savecompany.bind(this);
         this.newcompany = this.newcompany.bind(this);
+        this.onChangeSectorDropdown = this.onChangeSectorDropdown.bind(this);
         this.state = {
             companyName: "",
             turnover: 0,
@@ -23,15 +24,44 @@ export default class ManageCompany extends React.Component {
             boardOfDirectors: "",
             companyBrief: "",
             sectorName: "",
-
+            sectorList: [],
             submitted: false,
             companylist: [],
+            selectedSector:"",
+            validationError:""
         };
+
     }
     componentDidMount() {
         Service.getCompany().then((response => {
             this.setState({ companylist: response.data })
         }));
+
+        Service.getSectorList().then((response => {
+            console.log(response.data);
+            this.setState({
+                sectorList: response.data
+            })
+            //  let teamsFromApi = response.data.map(team => {
+            //              return { value: team, display: team }
+            // });
+            // this.setState({
+            //     sectorList: [{ value: '', display: '(Select the Sector)' }].concat(teamsFromApi)
+            // });
+        }));
+
+        // fetch("http://localhost:8080/getcompanysectors")
+        //     .then((response) => {
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         let teamsFromApi = data.map(team => {
+        //             return { value: team, display: team }
+        //         });
+        //         this.setState({
+        //             sectorList:[{value: '',display: '(Select the Sector)'}].concat(teamsFromApi)
+        //         });
+        //     }).catch(e => console.log(e));
     }
 
 
@@ -67,6 +97,12 @@ export default class ManageCompany extends React.Component {
         this.setState({
             sectorName: e.target.value
         });
+    } 
+    onChangeSectorDropdown(e){
+        this.setState({
+            selectedSector:e.target.value,
+            sectorName:e.target.value,
+            validationError:e.target.value === ""?"You Must select a sector ":""});
     }
 
     savecompany() {
@@ -113,6 +149,9 @@ export default class ManageCompany extends React.Component {
     }
 
     render() {
+
+
+
         return (
             <div className="submit-form">
                 {this.state.submitted ? (
@@ -184,7 +223,7 @@ export default class ManageCompany extends React.Component {
                                 name="companyBrief"
                             />
                         </div>
-                        <div className="form-group" class="col-md-6">
+                        {/* <div className="form-group" class="col-md-6">
                             <label htmlFor="title">Sector Name</label>
                             <input
                                 type="text"
@@ -195,7 +234,17 @@ export default class ManageCompany extends React.Component {
                                 onChange={this.onChangesectorName}
                                 name="sectorName"
                             />
+                        </div> */}
+                        <div>
+                            <select value={this.state.selectedSector}
+                                onClick={this.onChangeSectorDropdown}>
+                                {this.state.sectorList.map((sectors) => <option key={sectors.id} value={sectors.sectorName}> {sectors.sectorName} </option>)}
+                            </select>
                         </div>
+                        <div style={{color:'red',marginTop: '5px'}}>
+                            {this.state.validationError}
+                            </div>
+
 
                         <button onClick={this.savecompany} className="btn btn-success">
                             Submit
