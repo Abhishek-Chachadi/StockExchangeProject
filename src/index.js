@@ -11,6 +11,9 @@ import LandingPage from './LandingPage';
 import UserLandingPage from './UserLandingPage.js';
 import FusionChart from './FusionChart';
 import LoginPage from './LoginPage';
+import FusionChharts from './FusionChharts';
+import CompareCompany from './CompareCompany';
+
 ReactDOM.render(
   <React.StrictMode>
     {/* <LoginPage/> */}
@@ -18,6 +21,8 @@ ReactDOM.render(
     <LandingPage/>
     {/* <UserLandingPage/> */}
     {/* <FusionChart/> */}
+    {/* <FusionChharts/> */}
+    {/* <CompareCompany/> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -74,6 +74,7 @@ export default class ManageExchange extends React.Component{
 
     render() {
         return (
+            <div>
             <div className="submit-form">
                 {this.state.submitted ? (
                     <div>
@@ -119,7 +120,7 @@ export default class ManageExchange extends React.Component{
                     <ul className="list-group">
                     </ul>
                 </div>
-
+                </div>
                 <div>
                 <h1 className="text-center">Sector List</h1>
                 <Table className = "table table-dark table-striped">

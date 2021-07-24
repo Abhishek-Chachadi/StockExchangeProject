@@ -153,6 +153,7 @@ export default class ManageCompany extends React.Component {
 
 
         return (
+            <div>
             <div className="submit-form">
                 {this.state.submitted ? (
                     <div>
@@ -256,7 +257,7 @@ export default class ManageCompany extends React.Component {
                     <ul className="list-group">
                     </ul>
                 </div>
-
+                </div>
                 <div>
                     <h1 className="text-center"> Company List</h1>
                     <Table className="table table-dark table-striped table-hover">
@@ -298,6 +299,7 @@ export default class ManageCompany extends React.Component {
                     </Table>
                 </div>
             </div>
+            
         );
     }
 }

@@ -13,13 +13,16 @@ export default class IPODetails extends React.Component{
         this.onChangeopenDateTime = this.onChangeopenDateTime.bind(this);
         this.saveipodetail = this.saveipodetail.bind(this);
         this.newipo = this.newipo.bind(this);
+        this.onChangeCompanyDropdown = this.onChangeCompanyDropdown.bind(this);
         this.state ={
             companyName: "",
             pricePerShare: 0,
             totalNumberOfShares: 0,
             openDateTime: "",
             submitted: false,
-            ipodetails:[]
+            ipodetails:[],
+            Companies:[],
+            selectedCompany:""
         }
     }
 
@@ -27,7 +30,13 @@ export default class IPODetails extends React.Component{
         Service.getIpoDetailFromCompany().then((response => {
             this.setState({ipodetails:response.data})
         }));
-    }
+        Service.getCompany().then((response => {
+            console.log(response.data);
+            this.setState({
+                Companies: response.data
+            })}
+         ));
+        }
 
     onChangecompanyName(e) {
         this.setState({
@@ -84,8 +93,17 @@ export default class IPODetails extends React.Component{
         });
     }
 
+    onChangeCompanyDropdown(e){
+        this.setState({
+            selectedCompany:e.target.value,
+            companyName:e.target.value,
+            //validationError:e.target.value === ""?"You Must select a sector ":""});
+    });
+}
+
     render(){
         return(
+            <div>
                 <div className="submit-form">
                 {this.state.submitted ? (
                     <div class="col-md-6">
@@ -107,6 +125,13 @@ export default class IPODetails extends React.Component{
                                 onChange={this.onChangecompanyName}
                                 name="companyName"
                             />
+                        </div>
+                        <div>
+                            <select 
+                                onClick={this.onChangeCompanyDropdown}>
+                                {this.state.Companies.map((Company) => <option key={Company.id} value={Company.companyName}> {Company.companyName} </option>)}
+                                value={this.state.selectedCompany}
+                            </select>
                         </div>
 
                         <div className="form-group" class="col-md-6">
@@ -154,7 +179,7 @@ export default class IPODetails extends React.Component{
                 )}
 
 
-
+</div>
             <div>
                 <h1 className="text-center"> IPO Details</h1>
                 <Table className = "table table-dark table-striped table-hover">
