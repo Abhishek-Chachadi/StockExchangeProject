@@ -61,6 +61,12 @@ public class Maincontroller {
 		return c;
 	}
 
+	@RequestMapping(value = "/getcompanydetailsName", method = RequestMethod.POST)
+	public Company getcompanyusingName(@RequestBody Company cmp) {
+		Company c = cmprep.findByCompanyName(cmp.getCompanyName());
+		return c;
+	}
+
 	@RequestMapping(value = "/getcompanydetailsAll", method = RequestMethod.GET)
 	public List<Company> getcompanies() {
 		List<Company> c = cmprep.findAll();

@@ -134,6 +134,22 @@ public class StockPriceController {
 		return map;
 	}
 
+	@RequestMapping(value = "/getonecompany", method = RequestMethod.POST)
+	public List<StockPrice> getoneCompany(@RequestBody Map<String, String> text) {
+		// company name, stock exchange, from and to 1, from and to 2
+		Stockexchange e = stockRepo.findByName(text.get("name"));
+		Company c1 = cmprepo.findByCompanyName(text.get("companyName"));
+		Query query1 = em.createNamedQuery("Companystockexchange.findBycompanyCode");
+		query1.setParameter("stockexchange", e);
+		query1.setParameter("company", c1);
+		String cCode1 = (String) query1.getSingleResult();
+
+		List<StockPrice> period1 = getDataFromDB2(cCode1, text.get("companyName"), LocalDate.parse(text.get("from1")),
+				LocalDate.parse(text.get("to1")));
+
+		return period1;
+	}
+
 
 
 }
