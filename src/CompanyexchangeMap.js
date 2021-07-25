@@ -240,7 +240,7 @@ export default class CompanyexchangeMap extends React.Component{
     onChangeExchangeDropdown(e){
         this.setState({
             selectedExchange:e.target.value,
-            exchangeName:e.target.value
+            name:e.target.value
         })
     }
     
@@ -342,7 +342,7 @@ export default class CompanyexchangeMap extends React.Component{
                             <div>
                             <select 
                                 onClick={this.onChangeExchangeDropdown}>
-                                {this.state.ExchangeList.map((company) => <option key={company.id} value={company.exchangeName}> {company.exchangeName} </option>)}
+                                {this.state.exchangeMap.map((company) => <option key={company.id} value={company.stockexchange.name}> {company.stockexchange.name} </option>)}
                                 value={this.state.selectedExchange}
                             </select>
                         </div>
