@@ -27,7 +27,7 @@ public class UserController {
 	@Autowired
 	Users_Repository userrepo;
 
-	@CrossOrigin(origins ="http://localhost:3000")
+	@CrossOrigin(origins = "https://phase3react.herokuapp.com/")
 
 	@RequestMapping(value = "/setuserapi",method=RequestMethod.POST)
 	
@@ -46,8 +46,8 @@ public class UserController {
 
 		Users_SE user = userrepo.getById(userid);
 
-		final String username = "chachadi555abhishek@gmail.com";
-		final String password = "Currygiannis@29";
+		final String username = "yenshaarvce@gmail.com";
+		final String password = "lessgoValo@20";
 
 		Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -64,7 +64,7 @@ public class UserController {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("chachadi555abhishek@gmail.com"));
+			message.setFrom(new InternetAddress("yenshaarvce@gmail.com"));
 			// message.setRecipients(
 			// Message.RecipientType.TO,
 			// InternetAddress.parse("sftrainerram@gmail.com")
@@ -74,7 +74,8 @@ public class UserController {
 			// message.setText("Dear Mail Crawler,"
 			// + "\n\n Please do not spam my email!");
 			message.setContent(
-					"<h1><a href =\"http://127.0.0.1:8080/confirmuser/" + userid + "/\"> Click to confirm </a></h1>",
+					"<h1><a href =\"https://phase3stockexchange.herokuapp.com/confirmuser/" + userid
+							+ "/\"> Click to confirm </a></h1>",
 					"text/html");
 			Transport.send(message);
 
@@ -94,6 +95,13 @@ public class UserController {
 		usr.setConfirmed(true);
 		userrepo.save(usr);
 		return "User confirmed" + usr.getname();
+	}
+
+	@RequestMapping(value = "/getAdmin", method = RequestMethod.POST)
+	public Users_SE createstockprice(@RequestBody Users_SE cmp) {
+		Users_SE spc = userrepo.findByid(cmp.getId());
+		return spc;
+
 	}
 
 }
