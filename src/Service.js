@@ -1,11 +1,11 @@
 
 import axios from 'axios';
 import http from "./http-common";
-const getIpoDetails = "http://localhost:8080/getipodetailsAll";
-const getStockExchange = "http://localhost:8080/getstockexchange";
-const getCompanies = "http://localhost:8080/getcompanydetailsAll";
-const getExchangeMap = "http://localhost:8080/getExchangeMapAll";
-const getSectorList2 = "http://localhost:8080/getcompanysectors";
+const getIpoDetails = "https://phase3stockexchange.herokuapp.com/getipodetailsAll";
+const getStockExchange = "https://phase3stockexchange.herokuapp.com/getstockexchange";
+const getCompanies = "https://phase3stockexchange.herokuapp.com/getcompanydetailsAll";
+const getExchangeMap = "https://phase3stockexchange.herokuapp.com/getExchangeMapAll";
+const getSectorList2 = "https://phase3stockexchange.herokuapp.com/getcompanysectors";
 class Service{
     getIpoDetailFromCompany()
     {

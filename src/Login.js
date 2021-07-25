@@ -9,8 +9,9 @@ export default class Login extends Component {
         this.onChangename = this.onChangename.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeadmin = this.onChangeadmin(this);
-
+        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.onChangeadmin = this.onChangeadmin(this);
+        this.handleChange = this.handleChange.bind(this);
         this.state = {
             username:"",
             email: "",
@@ -19,16 +20,49 @@ export default class Login extends Component {
           };
     }
 
-    EnterUser(){
-        
-        if(this.state.email == "admin" && this.state.password == "admin" && this.state.username == "admin" )
-        {
-            return(true);
-        }
-        else
-        return(false);
+    handleSubmit = (e) => {
+      e.preventDefault();
 
     }
+
+    handleChange = (e) => {
+        const {name,value} = e.target.value;
+        this.setState({
+            [name]:value
+        })
+    }
+
+    EnterUser(){
+        
+
+        var data2 = {
+            id: "3"
+        };
+
+        const requestOptions = {
+      
+           
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer my-token',
+                'My-Custom-Header': 'frontend'
+            },
+            body : JSON.stringify(data2)
+          
+        };
+        fetch('http://localhost:8080/getAdmin', requestOptions)
+            .then(response => {
+                this.setState({
+                    submitted: true
+                });
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
     onChangename(e){
         this.setState({
             username : e.target.value,
@@ -45,33 +79,34 @@ export default class Login extends Component {
             password : e.target.value,
         })
     }
-    onChangeadmin(e){
-        this.setState({
-            admin : e.target.value,
-        })
-    }
+    // onChangeadmin(e){
+    //     this.setState({
+    //         admin : e.target.value,
+    //     })
+    // }
     render() {
         return (
-            <form>
+            <form onSubmit = {this.handleSubmit}>
                 <h3>Sign In</h3>
 
                 <div className="form-group">
                     <label>Name</label>
-                    <input type="name" className="form-control" placeholder="Enter Name" name="name" id = "name"/>
+                    <input type="name" className="form-control" value ={this.state.username} onChange={this.onChangename} placeholder="Enter Name" name="name" id = "name" required/>
                 </div>
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input type="text" className="form-control" placeholder="Enter email" name="email" id = "email"/>
+                    <input type="text" className="form-control" value = {this.state.email}onChange = {this.onChangeEmail}placeholder="Enter email" name="email" id = "email" required/>
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" name="password" id="password"/>
+                    <input type="password" className="form-control" value= {this.state.password}onChange = {this.onChangePassword} placeholder="Enter password" name="password" id="password" required/>
                 </div>
+                
 
 
-                <button type="submit" onClick={this.EnterUser} className="btn btn-primary btn-block">Submit</button>
+                <button type="submit" onClick={this.handleChange} className="btn btn-primary btn-block">Submit</button>
             </form>
         );
     }
