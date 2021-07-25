@@ -198,7 +198,7 @@ export default class CompanyexchangeMap extends React.Component{
             name: "",
             submitted:false,
             exchangeMap:[],
-            CompanyList:[],
+            companyList:[],
             ExchangeList:[],
             selectedCompany:"",
             selectedExchange:""
@@ -214,9 +214,9 @@ export default class CompanyexchangeMap extends React.Component{
             this.setState({exchangeList:response.data})
         }));
 
-        Service.getCompany().then((response)=>{
+        Service.getCompany().then((response=>{
             this.setState({companyList:response.data})
-        })
+        }));
        }
     changecompanyName(e){
         this.setState({companyName:e.target.value});
@@ -308,9 +308,10 @@ export default class CompanyexchangeMap extends React.Component{
                                  />
                              </div>
                              <div>
-                            <select value={this.state.selectedCompany}
+                            <select 
                                 onClick={this.onChangeCompanyDropdown}>
                                 {this.state.companyList.map((company) => <option key={company.id} value={company.companyName}> {company.companyName} </option>)}
+                                value={this.state.selectedCompany}
                             </select>
                         </div>
 
@@ -339,9 +340,10 @@ export default class CompanyexchangeMap extends React.Component{
                                 />
                             </div>
                             <div>
-                            <select value={this.state.selectedExchange}
+                            <select 
                                 onClick={this.onChangeExchangeDropdown}>
                                 {this.state.ExchangeList.map((company) => <option key={company.id} value={company.exchangeName}> {company.exchangeName} </option>)}
+                                value={this.state.selectedExchange}
                             </select>
                         </div>
                             
