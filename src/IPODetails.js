@@ -78,7 +78,7 @@ export default class IPODetails extends React.Component{
             },
             body: JSON.stringify(data)
         };
-        fetch('http://localhost:8080/ipodetails', requestOptions)
+        fetch('https://phase3stockexchange.herokuapp.com/ipodetails', requestOptions)
             .then(response => response.json)
     }
 

@@ -190,12 +190,18 @@ export default class CompanyexchangeMap extends React.Component{
         super(props);
         this.savemap = this.savemap.bind(this);
         this.newmap = this.newmap.bind(this);
+        this.onChangeCompanyDropdown = this.onChangeCompanyDropdown.bind(this);
+        this.onChangeExchangeDropdown = this.onChangeExchangeDropdown.bind(this);
         this.state = {
             companyName: "",
             companyCode: "",
             name: "",
             submitted:false,
             exchangeMap:[],
+            CompanyList:[],
+            ExchangeList:[],
+            selectedCompany:"",
+            selectedExchange:""
         };
     }
     componentDidMount()
@@ -203,6 +209,14 @@ export default class CompanyexchangeMap extends React.Component{
         Service.getExchangeMap().then((response => {
             this.setState({exchangeMap:response.data})
         }));
+
+        Service.getExchangeMap().then((response => {
+            this.setState({exchangeList:response.data})
+        }));
+
+        Service.getCompany().then((response)=>{
+            this.setState({companyList:response.data})
+        })
        }
     changecompanyName(e){
         this.setState({companyName:e.target.value});
@@ -216,6 +230,18 @@ export default class CompanyexchangeMap extends React.Component{
         this.setState({
             name:e.target.value
         });
+    }
+    onChangeCompanyDropdown(e){
+        this.setState({
+            selectedCompany:e.target.value,
+            companyName:e.target.value
+        })
+    }
+    onChangeExchangeDropdown(e){
+        this.setState({
+            selectedExchange:e.target.value,
+            exchangeName:e.target.value
+        })
     }
     
 
@@ -281,6 +307,12 @@ export default class CompanyexchangeMap extends React.Component{
                                     name="companyName"
                                  />
                              </div>
+                             <div>
+                            <select value={this.state.selectedCompany}
+                                onClick={this.onChangeCompanyDropdown}>
+                                {this.state.companyList.map((company) => <option key={company.id} value={company.companyName}> {company.companyName} </option>)}
+                            </select>
+                        </div>
 
                             <div className="form-group">
                                 <label htmlFor="title">Company Code</label>
@@ -306,6 +338,12 @@ export default class CompanyexchangeMap extends React.Component{
                                     name="name"
                                 />
                             </div>
+                            <div>
+                            <select value={this.state.selectedExchange}
+                                onClick={this.onChangeExchangeDropdown}>
+                                {this.state.ExchangeList.map((company) => <option key={company.id} value={company.exchangeName}> {company.exchangeName} </option>)}
+                            </select>
+                        </div>
                             
 
                             <button onClick={this.savemap} className="btn btn-success">
