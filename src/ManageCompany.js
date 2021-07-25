@@ -124,7 +124,7 @@ export default class ManageCompany extends React.Component {
             },
             body: JSON.stringify(data)
         };
-        fetch('http://localhost:8080/company', requestOptions)
+        fetch('https://phase3stockexchange.herokuapp.com/company', requestOptions)
             .then(response => {
                 this.setState({
                     submitted: true

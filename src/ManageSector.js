@@ -52,7 +52,7 @@ export default class ManageExchange extends React.Component{
             },
             body: JSON.stringify(data)
         };
-        fetch('http://localhost:8080/sector', requestOptions)
+        fetch('https://phase3stockexchange.herokuapp.com/sector', requestOptions)
             .then(response => {
                 this.setState({
                     submitted:true
