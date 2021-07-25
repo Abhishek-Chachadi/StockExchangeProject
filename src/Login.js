@@ -22,6 +22,7 @@ export default class Login extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
+      this.props.isLogin(true);
 
     }
 
@@ -51,7 +52,7 @@ export default class Login extends Component {
             body : JSON.stringify(data2)
           
         };
-        fetch('http://localhost:8080/getAdmin', requestOptions)
+        fetch('https://phase3stockexchange.herokuapp.com/getAdmin', requestOptions)
             .then(response => {
                 this.setState({
                     submitted: true

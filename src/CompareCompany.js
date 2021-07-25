@@ -90,7 +90,7 @@ class CompareCompany extends Component {
         //let searchval = this.refs.searchInput.value;//get node value or text value
         //console.log(searchval);
         let data = [];
-        let endpoint = 'http://127.0.0.1:8080/getonecompany';
+        let endpoint = 'https://phase3stockexchange.herokuapp.com/getonecompany';
         //you need to give end slash ony if you call from rest endpint
         fetch(endpoint, myInit1)
 

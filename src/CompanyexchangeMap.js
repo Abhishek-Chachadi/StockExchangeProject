@@ -235,7 +235,7 @@ export default class CompanyexchangeMap extends React.Component{
             },
             body: JSON.stringify(data)
         };
-        fetch('http://localhost:8080/mapcompanycode', requestOptions)
+        fetch('https://phase3stockexchange.herokuapp.com/mapcompanycode', requestOptions)
         .then(response => {
             this.setState({
                 submitted:true
