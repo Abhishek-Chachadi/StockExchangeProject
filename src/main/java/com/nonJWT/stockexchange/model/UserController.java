@@ -78,7 +78,7 @@ public class UserController {
 			// message.setText("Dear Mail Crawler,"
 			// + "\n\n Please do not spam my email!");
 			message.setContent(
-					"<h1><a href =\"http://localhost:8080/confirmuser/" + userid
+					"<h1><a href =\"https://phase3stockexchange.herokuapp.com/confirmuser/" + userid
 							+ "/\"> Click to confirm </a></h1>",
 					"text/html");
 			Transport.send(message);
