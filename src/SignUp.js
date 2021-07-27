@@ -50,17 +50,14 @@ export default class SignUp extends Component {
             },
             body: JSON.stringify(data)
         };
-        //fetch('http://localhost:8080/setuserapi', requestOptions)
-        fetch('https://phase3stockexchange.herokuapp.com/setuserapi',requestOptions)
+       // fetch('http://localhost:8080/setuserapi', requestOptions)
+       fetch('https://phase3stockexchange.herokuapp.com/setuserapi',requestOptions)
             .then(response => {
                 this.setState({
                     submitted: true
                 });
                 console.log(response.data);
             })
-            .catch(e => {
-                console.log(e);
-            });
     }
 
     newsignup() {
@@ -76,18 +73,7 @@ export default class SignUp extends Component {
         return (
             <div>
                 <div className="submit-form">
-                    {this.state.submitted ? (
-                        <div>
-                            <h4>Please Confirm your mail before logging in</h4>
-                            <button className="btn btn-success">
-                            <Link
-                                to={"/sign-in"}
-                            >
-                                Login
-                            </Link>
-                            </button>
-                        </div>
-                    ) : (
+                    
                         <div>
                             
 
@@ -106,7 +92,7 @@ export default class SignUp extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="title">Em ail</label>
+                                <label htmlFor="title">Email</label>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -137,7 +123,6 @@ export default class SignUp extends Component {
                                 Already registered <a href="/sign-in">sign in?</a>
                             </p>
                         </div>
-                    )}
                 </div>
 
             </div>
