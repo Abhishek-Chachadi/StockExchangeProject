@@ -125,6 +125,7 @@ export default class ManageCompany extends React.Component {
             body: JSON.stringify(data)
         };
         fetch('https://phase3stockexchange.herokuapp.com/company', requestOptions)
+        //fetch('http://localhost:8080/company', requestOptions)
             .then(response => {
                 this.setState({
                     submitted: true
@@ -237,9 +238,10 @@ export default class ManageCompany extends React.Component {
                             />
                         </div> */}
                         <div>
-                            <select value={this.state.selectedSector}
+                            <select 
                                 onClick={this.onChangeSectorDropdown}>
                                 {this.state.sectorList.map((sectors) => <option key={sectors.id} value={sectors.sectorName}> {sectors.sectorName} </option>)}
+                                value={this.state.selectedSector}
                             </select>
                         </div>
                         <div style={{color:'red',marginTop: '5px'}}>

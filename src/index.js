@@ -13,16 +13,19 @@ import FusionChart from './FusionChart';
 import LoginPage from './LoginPage';
 import FusionChharts from './FusionChharts';
 import CompareCompany from './CompareCompany';
+import Compare2Companies from './Compare2Companies';
+import SignUp from './SignUp';
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <LoginPage/> */}
-
+    {/* <Compare2Companies/> */}
     <LandingPage/>
-    {/* <UserLandingPage/> */}
+    <UserLandingPage/>
     {/* <FusionChart/> */}
     {/* <FusionChharts/> */}
     {/* <CompareCompany/> */}
+    <SignUp/>
   </React.StrictMode>,
   document.getElementById('root')
 );

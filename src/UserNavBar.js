@@ -10,7 +10,7 @@ export default class UserNavBar extends Component {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <a href="/upcomingipo" className="navbar-brand">
-            Welcome
+            User Landing Page
           </a>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -26,6 +26,12 @@ export default class UserNavBar extends Component {
             <li className="nav-item">
               <Link to={"/comparesector"} className="nav-link">
                 Compare Sector
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to={"/compare2companies"} className="nav-link">
+                Compare 2 Companies
               </Link>
             </li>
           </div>

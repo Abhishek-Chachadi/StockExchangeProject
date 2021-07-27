@@ -80,7 +80,10 @@ export default class SheetJSApp extends React.Component {
 
           body: data2
         };
+
+        
         fetch('https://phase3stockexchange.herokuapp.com/addstockprices',requestOptions)
+        //fetch('http://localhost:8080/addstockprices',requestOptions)
           .then(response => response.json)
       }
         

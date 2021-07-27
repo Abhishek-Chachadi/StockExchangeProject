@@ -11,17 +11,19 @@ class NavBar extends Component {
   render() {
     return (
     
-        <nav className ="navbar">
+      <nav className="navbar navbar-dark bg-dark">
         <ul className ="nav-links">
-          <li> STOCK EXCHANGE</li>
-          <Link to="/">Home</Link>
-          <Link to="/managecompany"><li> Manage Company</li>
+          <div className="navbar-nav mr-auto">
+          <li className="nav-item"> STOCK EXCHANGE</li>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/managecompany" className="nav-link"><li className="nav-item"> Manage Company</li>
           </Link>
-          <Link to="manageexchange"><li> Manage Exchange</li></Link>
-          <Link to="importexcel"> <li>Import Excel</li></Link>
-          <Link to="ipodetails"> <li>Update IPO Details </li></Link>
-          <Link to="addcompanyexchangemap"> <li>Enter Company Exchange Name </li></Link>
-          <Link to="getsectors"><li>Manage Sector</li></Link>
+          <Link to="manageexchange" className="nav-link"><li className="nav-item"> Manage Exchange</li></Link>
+          <Link to="importexcel" className="nav-link"> <li className="nav-item">Import Excel</li></Link>
+          <Link to="ipodetails" className="nav-link"> <li className="nav-item">Update IPO Details </li></Link>
+          <Link to="addcompanyexchangemap" className="nav-link"> <li className="nav-item">Enter Company Exchange Name </li></Link>
+          <Link to="getsectors" className="nav-link"><li className="nav-item">Manage Sector</li></Link>
+          </div>
         </ul> 
         </nav>
     );

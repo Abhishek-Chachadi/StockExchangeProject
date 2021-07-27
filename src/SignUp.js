@@ -50,7 +50,8 @@ export default class SignUp extends Component {
             },
             body: JSON.stringify(data)
         };
-        fetch('http://localhost:8080/setuserapi', requestOptions)
+        //fetch('http://localhost:8080/setuserapi', requestOptions)
+        fetch('https://phase3stockexchange.herokuapp.com/setuserapi',requestOptions)
             .then(response => {
                 this.setState({
                     submitted: true
@@ -105,7 +106,7 @@ export default class SignUp extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="title">Email</label>
+                                <label htmlFor="title">Em ail</label>
                                 <input
                                     type="text"
                                     className="form-control"

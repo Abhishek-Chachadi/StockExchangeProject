@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom';
+import {Link, Redirect, useHistory} from 'react-router-dom';
+import LandingPage from "./LandingPage";
 export default class Login extends Component {
         
     constructor(props)
     {
         super(props);
-        this.EnterUser = this.EnterUser.bind(this);
+       this.EnterUser = this.EnterUser.bind(this);
         this.onChangename = this.onChangename.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+       
+        // this.handleSubmit = this.handleSubmit.bind(this);
         // this.onChangeadmin = this.onChangeadmin(this);
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
         this.state = {
             username:"",
             email: "",
@@ -20,49 +22,28 @@ export default class Login extends Component {
           };
     }
 
-    handleSubmit = (e) => {
-      e.preventDefault();
-      this.props.isLogin(true);
+  
 
+
+   EnterUser(){
+           const {history} = this.props;
+            if(this.state.username == "admin" && this.state.password == "admin")
+            {
+                
+                
+                // <Link to={"/LandingPage"} className="nav-link"> </Link>;
+                
+                history.push("/LandingPage");
+                window.location.reload();
+               // <Redirect to="/LandingPage"/>;
+            }
+            
+         
+
+       
     }
 
-    handleChange = (e) => {
-        const {name,value} = e.target.value;
-        this.setState({
-            [name]:value
-        })
-    }
-
-    EnterUser(){
-        
-
-        var data2 = {
-            id: "3"
-        };
-
-        const requestOptions = {
-      
-           
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer my-token',
-                'My-Custom-Header': 'frontend'
-            },
-            body : JSON.stringify(data2)
-          
-        };
-        fetch('https://phase3stockexchange.herokuapp.com/getAdmin', requestOptions)
-            .then(response => {
-                this.setState({
-                    submitted: true
-                });
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
+    
 
     onChangename(e){
         this.setState({
@@ -86,19 +67,22 @@ export default class Login extends Component {
     //     })
     // }
     render() {
+        
         return (
-            <form onSubmit = {this.handleSubmit}>
+            <div>
+            <form className="form-group">
+               
                 <h3>Sign In</h3>
 
                 <div className="form-group">
-                    <label>Name</label>
+                    <label>Username</label>
                     <input type="name" className="form-control" value ={this.state.username} onChange={this.onChangename} placeholder="Enter Name" name="name" id = "name" required/>
                 </div>
 
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label>Email address</label>
                     <input type="text" className="form-control" value = {this.state.email}onChange = {this.onChangeEmail}placeholder="Enter email" name="email" id = "email" required/>
-                </div>
+                </div> */}
 
                 <div className="form-group">
                     <label>Password</label>
@@ -107,8 +91,9 @@ export default class Login extends Component {
                 
 
 
-                <button type="submit" onClick={this.handleChange} className="btn btn-primary btn-block">Submit</button>
+                <button type="submit" onClick={this.EnterUser} className="btn btn-primary btn-block">Submit</button>
             </form>
+            </div>
         );
     }
 }

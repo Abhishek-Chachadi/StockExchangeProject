@@ -210,8 +210,8 @@ export default class CompanyexchangeMap extends React.Component{
             this.setState({exchangeMap:response.data})
         }));
 
-        Service.getExchangeMap().then((response => {
-            this.setState({exchangeList:response.data})
+        Service.getStockExchanges().then((response => {
+            this.setState({ExchangeList:response.data})
         }));
 
         Service.getCompany().then((response=>{
@@ -261,7 +261,8 @@ export default class CompanyexchangeMap extends React.Component{
             },
             body: JSON.stringify(data)
         };
-        fetch('https://phase3stockexchange.herokuapp.com/mapcompanycode', requestOptions)
+       // fetch('http://localhost:8080/mapcompanycode', requestOptions)
+        fetch('https://phase3stockexchange.herokuapp.com/mapcompanycode',requestOptions)   
         .then(response => {
             this.setState({
                 submitted:true
@@ -342,7 +343,7 @@ export default class CompanyexchangeMap extends React.Component{
                             <div>
                             <select 
                                 onClick={this.onChangeExchangeDropdown}>
-                                {this.state.exchangeMap.map((company) => <option key={company.id} value={company.stockexchange.name}> {company.stockexchange.name} </option>)}
+                                {this.state.ExchangeList.map((company) => <option key={company.id} value={company.name}> {company.name} </option>)}
                                 value={this.state.selectedExchange}
                             </select>
                         </div>

@@ -6,6 +6,14 @@ const getStockExchange = "https://phase3stockexchange.herokuapp.com/getstockexch
 const getCompanies = "https://phase3stockexchange.herokuapp.com/getcompanydetailsAll";
 const getExchangeMap = "https://phase3stockexchange.herokuapp.com/getExchangeMapAll";
 const getSectorList2 = "https://phase3stockexchange.herokuapp.com/getcompanysectors";
+
+
+// const getIpoDetails = "http://localhost:8080/getipodetailsAll";
+// const getStockExchange = "http://localhost:8080/getstockexchange";
+// const getCompanies = "http://localhost:8080/getcompanydetailsAll";
+// const getExchangeMap = "http://localhost:8080/getExchangeMapAll";
+// const getSectorList2 = "http://localhost:8080/getcompanysectors";
+
 class Service{
     getIpoDetailFromCompany()
     {

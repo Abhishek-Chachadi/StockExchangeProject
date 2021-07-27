@@ -7,6 +7,7 @@ import UpcomingIPO from "./UpcomingIPO";
 import CompareCompany from "./CompareCompany";
 import CompareSector from "./CompareSector";
 import UserNavBar from "./UserNavBar";
+import Compare2Companies from "./Compare2Companies";
 export default class UserLandingPage extends Component {
   render() {
     return (
@@ -19,6 +20,7 @@ export default class UserLandingPage extends Component {
                <Switch>
             <Route exact path="/upcomingipo" component={UpcomingIPO} />
             <Route exact path="/comparecompany" component={CompareCompany} />
+            <Route exact path ="/compare2companies" component={Compare2Companies}/>
             <Route exact path="/comparesector" component={CompareSector} />
                </Switch>
             </BrowserRouter>
