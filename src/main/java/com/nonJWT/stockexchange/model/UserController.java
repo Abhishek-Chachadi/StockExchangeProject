@@ -31,7 +31,7 @@ public class UserController {
 
 //https://phase3stockexchange.herokuapp.com -  for comfirm message
 	@CrossOrigin(origins = "https://phase3react.herokuapp.com/")
-//	@CrossOrigin(origins = "http://localhost:3000/")
+	// @CrossOrigin(origins = "http://localhost:3000/")
 
 	@RequestMapping(value = "/setuserapi",method=RequestMethod.POST)
 	
