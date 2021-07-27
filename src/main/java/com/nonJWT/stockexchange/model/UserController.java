@@ -2,6 +2,7 @@ package com.nonJWT.stockexchange.model;
 
 
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
@@ -22,12 +23,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 public class UserController {
 	@Autowired
 	Users_Repository userrepo;
 
+//https://phase3stockexchange.herokuapp.com -  for comfirm message
 	@CrossOrigin(origins = "https://phase3react.herokuapp.com/")
+//	@CrossOrigin(origins = "http://localhost:3000/")
 
 	@RequestMapping(value = "/setuserapi",method=RequestMethod.POST)
 	
@@ -70,11 +74,11 @@ public class UserController {
 			// InternetAddress.parse("sftrainerram@gmail.com")
 			// );
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getemail()));
-			message.setSubject("USer confirmation email");
+			message.setSubject("User confirmation email");
 			// message.setText("Dear Mail Crawler,"
 			// + "\n\n Please do not spam my email!");
 			message.setContent(
-					"<h1><a href =\"https://phase3stockexchange.herokuapp.com/confirmuser/" + userid
+					"<h1><a href =\"http://localhost:8080/confirmuser/" + userid
 							+ "/\"> Click to confirm </a></h1>",
 					"text/html");
 			Transport.send(message);
@@ -100,6 +104,13 @@ public class UserController {
 	@RequestMapping(value = "/getAdmin", method = RequestMethod.POST)
 	public Users_SE createstockprice(@RequestBody Users_SE cmp) {
 		Users_SE spc = userrepo.findByid(cmp.getId());
+		return spc;
+
+	}
+
+	@RequestMapping(value = "/getuserapi", method = RequestMethod.GET, headers = "Accept=application/json")
+	public List<Users_SE> getusers() {
+		List<Users_SE> spc = userrepo.findAll();
 		return spc;
 
 	}

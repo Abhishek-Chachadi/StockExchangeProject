@@ -20,14 +20,14 @@ public class Users_SE {
 	private String email;
 	private Boolean Confirmed;
 	private Boolean Admin;
-	private String Role;
+	private String role;
 
 	public String getRole() {
-		return Role;
+		return role;
 	}
 
 	public void setRoles(String roles) {
-		Role = roles;
+		role = roles;
 	}
 
 	public long getId() {
@@ -83,11 +83,13 @@ public class Users_SE {
 		super();
 	}
 
-	public Users_SE(String name, String password, String email, Boolean admin) {
+	public Users_SE(String name, String password, String email, String Role) {
 		super();
 		this.name = name;
 		this.password = password;
 		this.email = email;
-		Admin = admin;
+		this.role = Role;
+
 	}
+
 }

@@ -50,11 +50,11 @@ public class Company {
 	@Type(type = "text")
 	private String companyBrief;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "company", cascade = CascadeType.REMOVE)
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "company", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private IPODetail ipo;
 
-	@OneToMany(targetEntity = Companystockexchangemap.class)
+	@OneToMany(targetEntity = Companystockexchangemap.class, cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private List<Companystockexchangemap> compstockmap;
 

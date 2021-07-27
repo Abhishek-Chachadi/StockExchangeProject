@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.nonJWT.stockexchange.model.Company;
 import com.nonJWT.stockexchange.model.Companyrepository;
-import com.nonJWT.stockexchange.model.Users_Repository;
-import com.nonJWT.stockexchange.model.Users_SE;
 
 @Configuration
 public class loadData {
@@ -26,11 +24,11 @@ public class loadData {
 
 	}
 
-	@Bean
-	CommandLineRunner initDatabase2(Users_Repository userrepo) {
-
-		return args -> {
-			log.info("Preloading " + userrepo.save(new Users_SE("admin", "admin", "admin", true)));
-		};
-}
+//	@Bean
+//	CommandLineRunner initDatabase2(Users_Repository userrepo) {
+//
+//		return args -> {
+//			log.info("Preloading " + userrepo.save(new Users_SE("admin", "admin", "admin", true, "admin")));
+//		};
+//}
 }
